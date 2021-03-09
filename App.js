@@ -1,8 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Input } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { StyleSheet } from 'react-native';
 
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
@@ -28,6 +25,7 @@ export default function App() {
   );
 }
 
+// eslint-disable-next-line no-unused-vars
 const styles = StyleSheet.create({
   container: {
     flex: 1,
