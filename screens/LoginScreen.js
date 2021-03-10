@@ -1,21 +1,43 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { useEffect, useState } from 'react';
-import { Button, Input, Image } from 'react-native-elements';
-import { StatusBar } from 'expo-status-bar';
-import { auth } from '../firebase';
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { Button, Input, Image } from "react-native-elements";
+import { StatusBar } from "expo-status-bar";
+import { auth } from "../firebase";
+import { db } from "../firebase";
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  // const register = () => {
+  //   auth
+  //     .createUserWithEmailAndPassword(email, password)
+  //     .catch((error) => alert(error.message));
 
   const register = () => {
     auth
       .createUserWithEmailAndPassword(email, password)
+      .then((cred) => {
+        return db.collection("users").doc(cred.user.uid).set({
+          Name: name,
+        });
+      })
       .catch((error) => alert(error.message));
   };
+
   return (
     <View>
+      <View>
+        <StatusBar style="light" />
+        <Input
+          placeholder="Name"
+          autoFocus
+          type="name"
+          value={name}
+          onChangeText={(text) => setName(text)}
+        />
+      </View>
       <View>
         <StatusBar style="light" />
         <Input
@@ -40,7 +62,6 @@ const LoginScreen = () => {
     </View>
   );
 };
-
 export default LoginScreen;
 
 const styles = StyleSheet.create({});
