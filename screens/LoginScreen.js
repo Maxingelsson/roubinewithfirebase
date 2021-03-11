@@ -6,6 +6,8 @@ import { StatusBar } from "expo-status-bar";
 import { auth } from "../firebase";
 import { db } from "../firebase";
 
+import colors from "../config/colors";
+
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,11 +17,20 @@ const LoginScreen = () => {
   //     .createUserWithEmailAndPassword(email, password)
   //     .catch((error) => alert(error.message));
 
+  const signInAnonymously = () => {
+    auth.signInAnonymously().then((cred) => {
+      return db.collection("Users").doc(cred.user.uid).set({
+        Name: name,
+        Guest: false,
+      });
+    });
+  };
+
   const register = () => {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((cred) => {
-        return db.collection("users").doc(cred.user.uid).set({
+        return db.collection("Users").doc(cred.user.uid).set({
           Name: name,
         });
       })
@@ -27,7 +38,7 @@ const LoginScreen = () => {
   };
 
   return (
-    <View>
+    <View style={{}}>
       <View>
         <StatusBar style="light" />
         <Input
@@ -58,13 +69,18 @@ const LoginScreen = () => {
           onChangeText={(text) => setPassword(text)}
         />
       </View>
-      <Button title="login" onPress={register} />
+      <Button title="Login as Guest" onPress={signInAnonymously} />
     </View>
   );
 };
 export default LoginScreen;
 
 const styles = StyleSheet.create({});
+
+// var data = db.collection("Users").get();
+// data.forEach((item ) => {
+//   db.collection("Users2").add(item.data()
+//   )};
 
 // import React, { useEffect } from 'react';
 // import { StyleSheet, Text, View } from 'react-native';

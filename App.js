@@ -1,18 +1,18 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
+import React from "react";
+import { StyleSheet } from "react-native";
 
-import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
-import LoginScreen from './screens/LoginScreen';
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import LoginScreen from "./screens/LoginScreen";
 
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
 
 const globalScreenOptions = {
-  headerStyle: { backgroundColor: '#121212' },
-  headerTitleStyle: { color: 'white' },
-  headerTintColor: 'white',
+  headerStyle: { backgroundColor: "#121212" },
+  headerTitleStyle: { color: "white" },
+  headerTintColor: "white",
 };
 
 export default function App() {
@@ -29,9 +29,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'blue',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "blue",
+    alignItems: "center",
+    justifyContent: "center",
   },
   input: {
     marginTop: 200,
