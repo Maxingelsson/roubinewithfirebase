@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Input, Button } from "react-native-elements";
-import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { db, auth } from "../firebase";
 
 import Screen from "../components/Screen";
 import AppButton from "../components/AppButton";
 import colors from "../config/colors";
+import PropTypes from 'prop-types';
 
-function WelcomeScreen() {
+
+
+const WelcomeScreen = ({ navigation }) => {
   const [name, setName] = useState("");
 
   const signInAnonymously = () => {
@@ -22,9 +24,8 @@ function WelcomeScreen() {
   };
 
   return (
-    <Screen style={styles.container}>
+    <View style={styles.container}>
       <Text styles={styles.container}>My name is Roubine, whats yours?</Text>
-
       <View>
         <StatusBar style="light" />
         <Input
@@ -41,16 +42,12 @@ function WelcomeScreen() {
         title="Let's go!"
         onPress={signInAnonymously}
       />
-      <NavigationContainer>
-        <Text>Sign up || Log in </Text>
-        <AppButton
-          title="Go to Login"
-          onPress={() => this.props.navigation.navigate("LoginScreen")}
-        />
-      </NavigationContainer>
-    </Screen>
-  );
-}
+      <AppButton title="Go to Login" onPress={() => navigation.navigate('Login')} />
+      <TouchableOpacity><Text title= "Register" onPress={() => {navigation.navigate('Register')}}> <Text>Register</Text></Text></TouchableOpacity>
+      
+    
+    </View>
+  )};
 
 const styles = StyleSheet.create({
   button: {
@@ -68,7 +65,11 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: colors.lindaPurple,
-  },
+  }
 });
+
+WelcomeScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 
 export default WelcomeScreen;

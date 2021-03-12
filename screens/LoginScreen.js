@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button, Input } from "react-native-elements";
 import { StatusBar } from "expo-status-bar";
 import { auth, db } from "../firebase";
+import PropTypes from 'prop-types';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -64,6 +65,10 @@ const LoginScreen = () => {
       </View>
       <Button title="Login as Guest" onPress={signInAnonymously} />
     </View>
-  );
-};
+  )};
+
+  LoginScreen.propTypes = {
+    navigation: PropTypes.object.isRequired,
+  };
+
 export default LoginScreen;
