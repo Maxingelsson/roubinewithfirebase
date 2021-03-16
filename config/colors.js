@@ -15,4 +15,20 @@ export default {
   samBlack: "#373E40",
   lindaPurple: "#947BD3",
   samBlue: "#00B2CA",
+
+
+  //  DARK MODE STANDARD COLORS:
+  //  https://material.io/design/color/dark-theme.html
+  
+  darkmodeBlack: "#121212",
+
+  darkmodeHighWhite: 'rgba(255,255,255,0.86)',
+  darkmodeMediumWhite: 'rgba(255,255,255,0.60)',
+  darkmodeDisabledWhite: 'rgba(255,255,255,0.38)',
+
+  darkmodeFocused: 'rgba(255,255,255,0.12)',
+  darkmodePressed: 'rgba(255,255,255,0.10)',
+  darkmodeDragged: 'rgba(255,255,255,0.8)',
+
+  darkmodeErrorColor: '#CF6679',
 };
