@@ -10,6 +10,9 @@ const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+
+// shoooooo
+
   //const signInAnonymously = () => {
   // auth.signInAnonymously().then((cred) => {
   // return db.collection("Users").doc(cred.user.uid).set({
