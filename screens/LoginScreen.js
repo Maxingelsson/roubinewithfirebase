@@ -1,48 +1,40 @@
-import React from "react";
-import { View } from "react-native";
-import { useState } from "react";
-import { Button, Input } from "react-native-elements";
-import { StatusBar } from "expo-status-bar";
-import { auth, db } from "../firebase";
+import React from 'react';
+import { View } from 'react-native';
+import { useState } from 'react';
+import { Button, Input } from 'react-native-elements';
+import { StatusBar } from 'expo-status-bar';
+import { auth } from '../firebase';
 import PropTypes from 'prop-types';
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const signInAnonymously = () => {
-    auth.signInAnonymously().then((cred) => {
-      return db.collection("Users").doc(cred.user.uid).set({
-        Name: name,
-        Guest: false,
+  //const signInAnonymously = () => {
+  // auth.signInAnonymously().then((cred) => {
+  // return db.collection("Users").doc(cred.user.uid).set({
+  // Name: name,
+  //Guest: false,
+  //});
+  //});
+  //};
+
+  //FirebaseAuth.getInstance().getCurrentUser().getUid()
+  const signInWithEmailAndPassword = () => {
+    console.log(email);
+    auth
+      .signInWithEmailAndPassword(email, password)
+
+      .catch((error) => {
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+        console.error(error);
       });
-    });
   };
-
-  // const register = () => {
-  //   auth
-  //     .createUserWithEmailAndPassword(email, password)
-  //     .then((cred) => {
-  //       return db.collection("Users").doc(cred.user.uid).set({
-  //         Name: name,
-  //       });
-  //     })
-  //     .catch((error) => alert(error.message));
-  // };
 
   return (
     <View style={{}}>
-      <View>
-        <StatusBar style="light" />
-        <Input
-          placeholder="Name"
-          autoFocus
-          type="name"
-          value={name}
-          onChangeText={(text) => setName(text)}
-        />
-      </View>
       <View>
         <StatusBar style="light" />
         <Input
@@ -63,12 +55,13 @@ const LoginScreen = () => {
           onChangeText={(text) => setPassword(text)}
         />
       </View>
-      <Button title="Login as Guest" onPress={signInAnonymously} />
+      <Button title="Login" onPress={signInWithEmailAndPassword} />
     </View>
-  )};
+  );
+};
 
-  LoginScreen.propTypes = {
-    navigation: PropTypes.object.isRequired,
-  };
+LoginScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 
 export default LoginScreen;
