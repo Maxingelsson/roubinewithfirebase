@@ -22,7 +22,7 @@ export default {
   
   darkmodeBlack: "#121212",
 
-  darkmodeHighWhite: 'rgba(255,255,255,0.86)',
+  darkmodeHighWhite: 'rgba(255,255,255,0.87)',
   darkmodeMediumWhite: 'rgba(255,255,255,0.60)',
   darkmodeDisabledWhite: 'rgba(255,255,255,0.38)',
 
